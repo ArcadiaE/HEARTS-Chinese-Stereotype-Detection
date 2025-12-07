@@ -1,9 +1,7 @@
-````markdown
 # Beyond English: Adapting HEARTS for Holistic Chinese Stereotype Detection
 
 This repository contains the complete implementation for AISD Coursework 2, based on the HEARTS framework for explainable and sustainable stereotype detection. All technical work is performed inside **AISD_CW2_ver2.2.ipynb**, including English baseline replication, Chinese contextual adaptation, evaluation, and SHAP explainability.
 
----
 
 ## Project Overview
 
@@ -17,7 +15,6 @@ This project follows the coursework requirements:
 
 All steps—data loading, preprocessing, model training, tuning, evaluation, inference, and explainability—are implemented sequentially in the notebook.
 
----
 
 ## Repository Structure
 
