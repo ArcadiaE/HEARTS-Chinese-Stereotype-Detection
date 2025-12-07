@@ -176,6 +176,3 @@ Two SHAP methods are implemented:
 * No external scripts are required; all logic exists within a single notebook
 
 ---
-
-```
-```
