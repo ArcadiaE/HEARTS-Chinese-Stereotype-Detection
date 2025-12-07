@@ -1,53 +1,83 @@
 # Beyond English: Adapting HEARTS for Holistic Chinese Stereotype Detection
 
-**Coursework 2: AI for Sustainable Development**
-**Student Number:** 22003632
-**Institution:** University College London
+**Student Name:** Yike Zhang
+**Student ID:** 22003632
+**Department:** Computer Science, UCL
+**Module:** AI for Sustainable Development (Coursework 2)
+
+---
 
 ## Project Overview
 
-This project replicates and contextualizes the HEARTS framework (originally designed for English text stereotype detection) to the Chinese social media landscape. By adapting the model to handle linguistic complexities such as high-context sarcasm and homophones, this work addresses the limitations of existing English-centric models in detecting culturally specific biases.
+This project contextualizes the **HEARTS** framework (originally designed for English) to detect stereotypes in **Chinese social media**. By adapting the model to the Chinese linguistic context, this work addresses specific regional and gender biases prevalent in online discourse.
 
-The system utilizes the COLD (Chinese Offensive Language Dataset) and employs a "Green AI" strategy via Partial Unfreezing to align with Sustainable Development Goals (SDGs), specifically targeting Reduced Inequalities (SDG 10) and Gender Equality (SDG 5).
+The project utilizes the **COLD (Chinese Offensive Language Dataset)** and implements a **Green AI** strategy (Partial Unfreezing) to ensure the model is both accurate and computationally sustainable.
+
+![Project Poster Overview](poster_overview.png)
+
+## Sustainable Development Goals (SDGs)
+
+This project aligns with the following UN SDGs:
+* **SDG 5 (Gender Equality):** Detection of toxic gender stereotypes (e.g., sexism).
+* **SDG 10 (Reduced Inequalities):** Mitigating discrimination against marginalized regional groups.
+* **SDG 12 (Responsible Consumption & Production):** reducing carbon footprint via parameter-efficient training.
 
 ## Methodology
 
-### Model Architecture
-- **Backbone:** bert-base-chinese (Hugging Face Transformers)
-- **Tokenization:** Character-level tokenization to capture the semantic depth of Chinese characters (Hanzi).
-- **Optimization Strategy:** Partial Unfreezing. We froze the bottom 8 layers of the BERT encoder and fine-tuned only the top 4 layers and the classifier head. This reduced trainable parameters by approximately 70 percent.
+### 1. Model Architecture
+* **Backbone:** `bert-base-chinese`
+* **Strategy:** Partial Unfreezing (Green AI)
+    * **Frozen Layers:** Layers 0-7 (General linguistic features)
+    * **Trainable Layers:** Layers 8-11 + Classifier Head (Task-specific features)
+* **Tokenization:** Character-based tokenization (Hanzi)
 
-### Dataset
-- **Source:** COLD (Chinese Offensive Language Dataset)
-- **Size:** 37,480 labeled sentences
-- **Categories:** Race/Ethnicity, Gender, and Regional discrimination.
-- **Split:** 80% Training, 20% Testing.
+![Model Architecture and Partial Unfreezing](model_architecture.png)
 
-## Key Features
+### 2. Dataset
+* **Source:** COLD (Chinese Offensive Language Dataset)
+* **Size:** 37,480 labeled sentences
+* **Categories:** Race, Gender, Region
 
-1. **Contextual Adaptation:** Successfully migrated the HEARTS framework to a non-Latin script language, addressing specific Chinese regional and gender stereotypes.
-2. **Explainability:** Integrated SHAP (SHapley Additive exPlanations) to provide token-level transparency, allowing for the visualization of which characters contribute most to the stereotype classification.
-3. **Sustainability:** The Partial Unfreezing technique significantly lowers the computational cost and carbon footprint of training, aligning with SDG 12 (Responsible Consumption and Production).
+## Performance Results
 
-## Results
+The model achieves robust performance, outperforming the baseline English transfer expectations.
 
-The adapted model achieves state-of-the-art performance, outperforming the baseline English transfer models.
-
-| Metric | Score |
+| Metric | Value |
 | :--- | :--- |
 | **F1-Score** | 0.9027 |
 | **Accuracy** | 90.27% |
 | **Validation Loss** | 0.267 |
 
+### Visualization of Results
+The following chart illustrates the training convergence and final performance metrics.
+
+![Performance Metrics](performance_chart.png)
+
+## Explainability (SHAP)
+
+To ensure transparency, we utilize **SHAP (SHapley Additive exPlanations)** to visualize token-level contributions. This allows us to understand which specific Chinese characters or terms triggered the stereotype classification.
+
+![SHAP Analysis Example](shap_analysis.png)
+
 ## Installation and Usage
 
-### Prerequisites
-- Python 3.8 or higher
-- PyTorch with CUDA support (recommended)
+### Requirements
+* Python 3.8+
+* PyTorch
+* Transformers (HuggingFace)
+* SHAP
 
-### Setup Instructions
+### Run the Project
+1.  Clone the repository.
+2.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  Execute the Jupyter Notebook:
+    ```bash
+    jupyter notebook AISD_CW2_ver2.2.ipynb
+    ```
 
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/YourUsername/AISD-CW2-Chinese-Stereotype-Detection.git](https://github.com/YourUsername/AISD-CW2-Chinese-Stereotype-Detection.git)
-   cd AISD-CW2-Chinese-Stereotype-Detection
+## References
+1.  *HEARTS: A Holistic Framework for Explainable, Sustainable, and Robust Text Stereotype Detection.*
+2.  *COLD: Chinese Offensive Language Dataset.*
